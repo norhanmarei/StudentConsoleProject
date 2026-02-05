@@ -1,0 +1,14 @@
+/home/norhan/PersonalProjects/StudentConsoleProject/obj/Debug/net9.0/StudentConsoleProject.GeneratedMSBuildEditorConfig.editorconfig
+/home/norhan/PersonalProjects/StudentConsoleProject/obj/Debug/net9.0/StudentConsoleProject.AssemblyInfoInputs.cache
+/home/norhan/PersonalProjects/StudentConsoleProject/obj/Debug/net9.0/StudentConsoleProject.AssemblyInfo.cs
+/home/norhan/PersonalProjects/StudentConsoleProject/obj/Debug/net9.0/StudentConsoleProject.csproj.CoreCompileInputs.cache
+/home/norhan/PersonalProjects/StudentConsoleProject/bin/Debug/net9.0/StudentConsoleProject
+/home/norhan/PersonalProjects/StudentConsoleProject/bin/Debug/net9.0/StudentConsoleProject.deps.json
+/home/norhan/PersonalProjects/StudentConsoleProject/bin/Debug/net9.0/StudentConsoleProject.runtimeconfig.json
+/home/norhan/PersonalProjects/StudentConsoleProject/bin/Debug/net9.0/StudentConsoleProject.dll
+/home/norhan/PersonalProjects/StudentConsoleProject/bin/Debug/net9.0/StudentConsoleProject.pdb
+/home/norhan/PersonalProjects/StudentConsoleProject/obj/Debug/net9.0/StudentConsoleProject.dll
+/home/norhan/PersonalProjects/StudentConsoleProject/obj/Debug/net9.0/refint/StudentConsoleProject.dll
+/home/norhan/PersonalProjects/StudentConsoleProject/obj/Debug/net9.0/StudentConsoleProject.pdb
+/home/norhan/PersonalProjects/StudentConsoleProject/obj/Debug/net9.0/StudentConsoleProject.genruntimeconfig.cache
+/home/norhan/PersonalProjects/StudentConsoleProject/obj/Debug/net9.0/ref/StudentConsoleProject.dll

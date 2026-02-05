@@ -1,0 +1,114 @@
+﻿using System;
+using System.Text.Json.Serialization;
+using System.Text;
+using System.Threading.Tasks;
+using System.Net.Http;
+using System.Net.Http.Json;
+using System.Collections.Generic;
+
+namespace StudentApiClient
+{
+    class Program
+    {
+        static readonly HttpClient httpClient = new HttpClient();
+        static async Task Main(string[] args)
+        {
+            httpClient.BaseAddress = new Uri("http://localhost:5098/api/students");
+            await GetAllStudents();
+            await GetPassedStudents();
+            await GetAverageGrade();
+            await GetStudentById();
+        }
+        static async Task GetAllStudents()
+        {
+            try
+            {
+                Console.WriteLine("\n----------------------------------------\n");
+                Console.WriteLine("\nFetching All Students...");
+                var students = await httpClient.GetFromJsonAsync<List<Student>>("students/All");
+                if (students != null)
+                {
+                    foreach (var student in students)
+                    {
+                        Console.WriteLine($"Id: {student.Id} Name: {student.Name} Age: {student.Age} Grade: {student.Grade}\n");
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("An Error Occurred: " + e.Message);
+            }
+        }
+        static async Task GetPassedStudents()
+        {
+            try
+            {
+                Console.WriteLine("\n----------------------------------------\n");
+                Console.WriteLine("\nFetching Passed Students Only...");
+                var passedStudents = await httpClient.GetFromJsonAsync<List<Student>>("students/Passed");
+                if(passedStudents != null)
+                {
+                    foreach(var student in passedStudents)
+                    {
+                        Console.WriteLine($"Id: {student.Id} Name: {student.Name} Age: {student.Age} Grade: {student.Grade}\n");
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("An Error Occurred: " + e.Message);
+            }
+        }
+        static async Task GetAverageGrade()
+        {
+            try
+            {
+                Console.WriteLine("\n----------------------------------------\n");
+                Console.WriteLine("\nFetching Average Grade...");
+                var averageGrade = await httpClient.GetFromJsonAsync<double>("students/Average");
+                if (averageGrade != null)
+                {
+                    Console.WriteLine($"Average Grade:  {averageGrade}\n");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("An Error Occurred: " + e.Message);
+            }
+        }
+        static async Task GetStudentById()
+        {
+             try
+            {
+                Console.WriteLine("\n----------------------------------------\n");
+                Console.WriteLine("\nFetching Student By Id...");
+                Console.WriteLine("\nEnter Student Id");
+                string studentIDInput = Console.ReadLine();
+                if (int.TryParse(studentIDInput, out int studentID))
+                {
+                    var student = await httpClient.GetFromJsonAsync<Student>($"students/{studentID}");
+                    if (student != null)
+                    {
+                        Console.WriteLine($"Id: {student.Id} Name: {student.Name} Age: {student.Age} Grade: {student.Grade}\n");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Invalid Input. Please Enter An Integer Number.");
+                }
+                
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("An Error Occurred: " + e.Message);
+            }
+        }
+    }
+    public class Student
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int Age { get; set; }
+        public int Grade{ get; set; }
+    }
+}
