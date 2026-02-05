@@ -19,6 +19,7 @@ namespace StudentApiClient
             await GetAverageGrade();
             await GetStudentById();
             await AddNewStudent();
+            await DeleteStudent();
         }
         static async Task GetAllStudents()
         {
@@ -112,7 +113,7 @@ namespace StudentApiClient
                 Age = 18,
                 Grade = 18
             };
-             try
+            try
             {
                 Console.WriteLine("\n----------------------------------------\n");
                 Console.WriteLine("\nAdding A New Student...");
@@ -120,12 +121,34 @@ namespace StudentApiClient
                 if (response.IsSuccessStatusCode)
                 {
                     var newStudent = await response.Content.ReadFromJsonAsync<Student>();
-                    if(newStudent != null)
-                    Console.WriteLine($"Id: {newStudent.Id} Name: {newStudent.Name} Age: {newStudent.Age} Grade: {newStudent.Grade}\n");
+                    if (newStudent != null)
+                        Console.WriteLine($"Id: {newStudent.Id} Name: {newStudent.Name} Age: {newStudent.Age} Grade: {newStudent.Grade}\n");
                 }
                 else
                 {
                     Console.WriteLine($"Failure: Status Code ---> {response.StatusCode}");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("An Error Occurred: " + e.Message);
+            }
+        }
+        static async Task DeleteStudent()
+        {
+            int Id = -3;
+             try
+            {
+                Console.WriteLine("\n----------------------------------------\n");
+                Console.WriteLine($"\nDeleting Student With Id [{Id}]...");
+                var res = await httpClient.DeleteAsync($"students/{Id}");
+                if (res.IsSuccessStatusCode)
+                {
+                    Console.WriteLine($"Student With Id [{Id}] Has Been Deleted\n");
+                }
+                else
+                {
+                    Console.WriteLine($"Failure: Status Code ---> {res.StatusCode}\n");
                 }
             }
             catch (Exception e)
