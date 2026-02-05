@@ -12,3 +12,4 @@
 /home/norhan/PersonalProjects/StudentConsoleProject/obj/Debug/net9.0/StudentConsoleProject.pdb
 /home/norhan/PersonalProjects/StudentConsoleProject/obj/Debug/net9.0/StudentConsoleProject.genruntimeconfig.cache
 /home/norhan/PersonalProjects/StudentConsoleProject/obj/Debug/net9.0/ref/StudentConsoleProject.dll
+/home/norhan/PersonalProjects/StudentConsoleProject/obj/Debug/net9.0/StudentConsoleProject.sourcelink.json

@@ -18,6 +18,7 @@ namespace StudentApiClient
             await GetPassedStudents();
             await GetAverageGrade();
             await GetStudentById();
+            await AddNewStudent();
         }
         static async Task GetAllStudents()
         {
@@ -78,7 +79,7 @@ namespace StudentApiClient
         }
         static async Task GetStudentById()
         {
-             try
+            try
             {
                 Console.WriteLine("\n----------------------------------------\n");
                 Console.WriteLine("\nFetching Student By Id...");
@@ -96,9 +97,38 @@ namespace StudentApiClient
                 {
                     Console.WriteLine("Invalid Input. Please Enter An Integer Number.");
                 }
-                
+
             }
-            catch(Exception e)
+            catch (Exception e)
+            {
+                Console.WriteLine("An Error Occurred: " + e.Message);
+            }
+        }
+        static async Task AddNewStudent()
+        {
+            Student student = new Student
+            {
+                Name = "Ola",
+                Age = 18,
+                Grade = 18
+            };
+             try
+            {
+                Console.WriteLine("\n----------------------------------------\n");
+                Console.WriteLine("\nAdding A New Student...");
+                var response = await httpClient.PostAsJsonAsync("", student);
+                if (response.IsSuccessStatusCode)
+                {
+                    var newStudent = await response.Content.ReadFromJsonAsync<Student>();
+                    if(newStudent != null)
+                    Console.WriteLine($"Id: {newStudent.Id} Name: {newStudent.Name} Age: {newStudent.Age} Grade: {newStudent.Grade}\n");
+                }
+                else
+                {
+                    Console.WriteLine($"Failure: Status Code ---> {response.StatusCode}");
+                }
+            }
+            catch (Exception e)
             {
                 Console.WriteLine("An Error Occurred: " + e.Message);
             }
@@ -109,6 +139,6 @@ namespace StudentApiClient
         public int Id { get; set; }
         public string Name { get; set; }
         public int Age { get; set; }
-        public int Grade{ get; set; }
+        public float Grade{ get; set; }
     }
 }
