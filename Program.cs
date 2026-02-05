@@ -20,6 +20,7 @@ namespace StudentApiClient
             await GetStudentById();
             await AddNewStudent();
             await DeleteStudent();
+            await UpdateStudent();
         }
         static async Task GetAllStudents()
         {
@@ -136,8 +137,8 @@ namespace StudentApiClient
         }
         static async Task DeleteStudent()
         {
-            int Id = -3;
-             try
+            int Id = 3;
+            try
             {
                 Console.WriteLine("\n----------------------------------------\n");
                 Console.WriteLine($"\nDeleting Student With Id [{Id}]...");
@@ -154,6 +155,35 @@ namespace StudentApiClient
             catch (Exception e)
             {
                 Console.WriteLine("An Error Occurred: " + e.Message);
+            }
+        }
+        static async Task UpdateStudent()
+        {
+            Student updatedStudent = new Student
+            {
+                Id = 2,
+                Name = "new Arwa",
+                Age = 99,
+                Grade = 100
+            };
+            try
+            {
+                Console.WriteLine("\n----------------------------------------\n");
+                Console.WriteLine("\nUpdating Student...");
+                var response = await httpClient.PutAsJsonAsync($"students/{updatedStudent.Id}", updatedStudent);
+                if (response.IsSuccessStatusCode)
+                {
+                    var student = await response.Content.ReadFromJsonAsync<Student>();
+                    if(student != null) Console.WriteLine($"Id: {student.Id} Name: {student.Name} Age: {student.Age} Grade: {student.Grade}\n");
+                }
+                else
+                {
+                    Console.WriteLine($"Failure: Status Code ---> {response.StatusCode}");
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine($"Error: " + e.Message);
             }
         }
     }
